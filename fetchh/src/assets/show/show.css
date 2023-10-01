@@ -1,0 +1,23 @@
+table {
+  width: 95%;
+  border: black solid 2px !important;
+  padding: 0.5rem;
+  min-height: 15vh;
+  overflow-y: scroll;
+}
+table label,
+table input {
+  font-size: small;
+}
+table input {
+  width: 5rem;
+}
+
+td {
+  padding: 0.3rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}/*# sourceMappingURL=show.css.map */

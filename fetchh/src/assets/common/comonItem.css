@@ -1,0 +1,74 @@
+@charset "UTF-8";
+label,
+input {
+  font-size: small !important;
+}
+
+input {
+  width: 5rem;
+}
+
+header {
+  width: 100%;
+  padding: 1rem;
+}
+
+h5 {
+  margin-bottom: unset !important;
+}
+
+.inputsss label,
+.inputsss input {
+  font-size: small;
+}
+.inputsss label {
+  margin-left: 0.5rem;
+}
+.inputsss input {
+  width: 5rem;
+  margin-left: 0.2rem;
+}
+.inputsss .headersearchbut {
+  margin-left: 0.5rem;
+}
+.inputsss .create {
+  position: absolute;
+  right: 3rem;
+  top: 1rem;
+}
+
+.button {
+  margin-left: 0.5rem;
+}
+
+.divv {
+  width: 100%;
+}
+
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.button2 {
+  margin-right: 0.5rem;
+}
+
+.creating {
+  position: absolute;
+  top: 50%; /* 将元素的顶部定位到容器的中央 */
+  left: 50%; /* 将元素的左侧定位到容器的中央 */
+  transform: translate(-50%, -50%);
+  width: 95%;
+  border: 2px black solid;
+  padding: 0.5rem;
+}
+
+.thepadding {
+  padding: 0.5rem;
+  width: 20%;
+}
+
+.margin {
+  margin-left: 0.2rem;
+}/*# sourceMappingURL=comonItem.css.map */
