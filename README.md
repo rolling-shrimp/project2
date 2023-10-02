@@ -14,6 +14,9 @@
 # 主頁
 ![image](https://github.com/rolling-shrimp/project2/blob/master/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202023-10-02%20014533.png)
 
+# 新增資料的頁面
+![image](https://github.com/rolling-shrimp/project2/blob/master/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202023-10-02%2015281.png)
+
 此專案使用React撰寫，以下是該網頁的功能設計介紹:
 
 # 使用者輸入框設計
