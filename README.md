@@ -12,7 +12,7 @@
 - 呈現在主頁上的資料是由Show.jsx呈現的，介面上的每筆資料都有修改和刪除的按鈕，點擊修改按鈕可以進入修改該資料的頁面進行資料修改，進入修改頁面後，點擊取消按鈕可以回到主頁。
 
 # 主頁
-![image](https://github.com/rolling-shrimp/project2/blob/master/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202023-10-02%20014533.png)
+![image](https://github.com/rolling-shrimp/project2/blob/master/88.png)
 
 # 新增資料的頁面
 ![image](https://github.com/rolling-shrimp/project2/blob/master/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202023-10-02%2015281.png)
