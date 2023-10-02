@@ -1,12 +1,12 @@
 # 可以新增、修改、刪除、查詢課資料和訂單資料的網頁
 
 # 專案結構
-主頁: fetchh/src/pages/Interface.jsx
-搜尋區塊: fetchh/src/components/Search.jsx
-展示區塊: fetchh/src/components/Show.jsx
-新增資料的頁面: fetchh/src/components/Create.jsx
-修改資料的頁面: fetchh/src/components/Edit.jsx (修改客戶資料) fetchh/src/components/EditOrd.jsx (修改訂單資料)
-主頁的部分由  fetchh/src/components/Show.jsx(顯示查找資料結果得地方) 和 fetchh/src/components/Search.jsx(使用者輸入查找條件的地方)構成，呈現的是客戶資料和鄧單資料，有切換頁面按鈕可以進行切換，讓使用者查看不同的資料。<br>
+主頁: fetchh/src/pages/Interface.jsx <br>
+搜尋區塊: fetchh/src/components/Search.jsx <br>
+展示區塊: fetchh/src/components/Show.jsx <br>
+新增資料的頁面: fetchh/src/components/Create.jsx<br>
+修改資料的頁面: fetchh/src/components/Edit.jsx (修改客戶資料) fetchh/src/components/EditOrd.jsx (修改訂單資料) <br>
+主頁的部分由 fetchh/src/components/Show.jsx(顯示查找資料結果得地方) 和 fetchh/src/components/Search.jsx(使用者輸入查找條件的地方)構成，呈現的是客戶資料和鄧單資料，有切換頁面按鈕可以進行切換，讓使用者查看不同的資料。<br>
 搜尋區塊(Search.jsx)有新增按鈕可以轉到新增資料頁面，新增資料的頁面有取消按鈕可以回到主頁<br>
 呈現在主頁上的資料是由show.jsx呈現的，介面上的每筆資料都有修改和刪除的按鈕，點擊修改按鈕可以進入修改該資料的頁面進行資料修改，進入修改頁面後，點擊取消按鈕可以回到主頁。
 
