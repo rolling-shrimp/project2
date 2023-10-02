@@ -13,17 +13,17 @@
 此專案使用React撰寫，以下是該網頁的功能設計介紹:
 
 # 使用者輸入框設計
- 使用 React 和 useContext 技術設計了用戶輸入框的標題和分頁切換。<br>
- 使用長輩組件 (App.js) 定義一個標題陣列，包含使用者將看到的輸入框標題（例如：姓名、國家等）。<br>
- 使用 React Hook createContext 和 useContext，在需要設置輸入欄位的組件 (Search.jsx, Create.jsx) 中傳遞該標題陣列。<br>
+- 使用 React 和 useContext 技術設計了用戶輸入框的標題和分頁切換。
+ - 使用長輩組件 (App.js) 定義一個標題陣列，包含使用者將看到的輸入框標題（例如：姓名、國家等）。
+ - 使用 React Hook createContext 和 useContext，在需要設置輸入欄位的組件 (Search.jsx, Create.jsx) 中傳遞該標題陣列。
 
 # 動態頁面切換
-在不同的 Route 中，傳遞不同的特定字串，以在兒孫組件 (Search.jsx, Interface.jsx, Show.jsx) 中設計不同的頁面。<br>
-使用這些特定字串來判斷目前處於哪個 Route，以呈現相應的內容，隱藏不屬於當前 Route 的內容。<br.
+- 在不同的 Route 中，傳遞不同的特定字串，以在兒孫組件 (Search.jsx, Interface.jsx, Show.jsx) 中設計不同的頁面。
+- 使用這些特定字串來判斷目前處於哪個 Route，以呈現相應的內容，隱藏不屬於當前 Route 的內容。
 
 # useMemo 的使用
-使用 useMemo 儲存修改過的標題陣列，以提高性能並確保一致性。<br>
- 在一些特殊情況下（例如：Create.jsx、Edit.jsx、EditOrd.jsx），需要在標題陣列中刪除 UID 和 ID，原因是UID和ID是有順序性的資料，通常交給後端mysql資料庫自行幫忙排序是比較有效率且不會出錯的選擇，因此在新增方面，使用者不用去記順序新增資料就好，在修改方面，不能讓使用者擅自修改順序，否則會造成錯亂。<br>
+- 使用 useMemo 儲存修改過的標題陣列，以提高性能並確保一致性。
+- 在一些特殊情況下（例如：Create.jsx、Edit.jsx、EditOrd.jsx），需要在標題陣列中刪除 UID 和 ID，原因是UID和ID是有順序性的資料，通常交給後端mysql資料庫自行幫忙排序是比較有效率且不會出錯的選擇，因此在新增方面，使用者不用去記順序新增資料就好，在修改方面，不能讓使用者擅自修改順序，否則會造成錯亂。
 # useEffect 和 useCallback
 
 - 使用 useEffect 和 useCallback 設計用戶剛進入頁面時的資料呈現。
