@@ -24,7 +24,7 @@
 # useMemo 的使用
 使用 useMemo 儲存修改過的標題陣列，以提高性能並確保一致性。<br>
  在一些特殊情況下（例如：Create.jsx、Edit.jsx、EditOrd.jsx），需要在標題陣列中刪除 UID 和 ID，原因是UID和ID是有順序性的資料，通常交給後端mysql資料庫自行幫忙排序是比較有效率且不會出錯的選擇，因此在新增方面，使用者不用去記順序新增資料就好，在修改方面，不能讓使用者擅自修改順序，否則會造成錯亂。<br>
-### useEffect 和 useCallback
+# useEffect 和 useCallback
 
 - 使用 useEffect 和 useCallback 設計用戶剛進入頁面時的資料呈現。
 - 第一次渲染時，向後端發送一次請求以獲取資料。
