@@ -1,6 +1,6 @@
 .interface {
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   flex-direction: column;
   align-items: center;
   a {
@@ -13,4 +13,10 @@ header {
   width: 100%;
   padding: 1rem;
   position: relative;
+  height: 10vh;
+  border-bottom: solid 5px gray;
+}
+.interface {
+  background-color: rgb(38, 55, 206);
+  height: 100vh;
 }

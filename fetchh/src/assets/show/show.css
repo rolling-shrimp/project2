@@ -1,9 +1,11 @@
 table {
   width: 95%;
-  border: black solid 2px !important;
+  border: gray solid 2px !important;
   padding: 0.5rem;
   min-height: 15vh;
   overflow-y: scroll;
+  background-color: rgb(5, 13, 83);
+  color: gray;
 }
 table label,
 table input {
