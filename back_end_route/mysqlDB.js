@@ -1,14 +1,12 @@
 const mySQL = require("mysql");
 
 require("dotenv").config(); // 导入dotenv模块，加载环境变量
-let secrete = require("/etc/secrets/.env");
 
 var connection = mySQL.createConnection({
-  user: process.env.DB_USER || secrete.DB_USER,
-  password: process.env.DB_PASSWORD || secrete.DB_PASSWORD,
-  host: process.env.DB_HOST || secrete.DB_HOST,
-  port: process.env.DB_PORT || secrete.DB_PORT,
-  database: process.env.DB_DATABASE || secrete.DB_DATABASE,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE,
 });
 connection.connect(function (err) {
   if (err) {
