@@ -3,6 +3,7 @@ const mySQL = require("mysql");
 require("dotenv").config(); // 导入dotenv模块，加载环境变量
 
 var connection = mySQL.createConnection({
+  host: process.env.DB_Host,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
