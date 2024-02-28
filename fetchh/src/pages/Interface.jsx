@@ -52,66 +52,70 @@ const Interface = () => {
     }
   };
 
-  if (!custRender.length) {
-    return <Loading />;
-  } else {
-    return (
-      <div className="interface">
-        {isOrder ? (
-          <Search
-            eachPageAmount={eachPageAmount}
-            isOrder={isOrder}
-            data={searchOrd}
-            setdata={setOrderRender}
-            redo={redo}
-            basicUrl={basicUrl}
-            setComparingArray={setSearchOrd}
-            changePage={changePage}
-          />
-        ) : (
-          <Search
-            eachPageAmount={eachPageAmount}
-            isOrder={isOrder}
-            data={searchCust}
-            setdata={setCustRender}
-            redo={redo}
-            basicUrl={basicUrl}
-            setComparingArray={setSearchCust}
-            changePage={changePage}
-          />
-        )}
+  return (
+    <div className="interface">
+      {isOrder ? (
+        <Search
+          eachPageAmount={eachPageAmount}
+          isOrder={isOrder}
+          data={searchOrd}
+          setdata={setOrderRender}
+          redo={redo}
+          basicUrl={basicUrl}
+          setComparingArray={setSearchOrd}
+          changePage={changePage}
+        />
+      ) : (
+        <Search
+          eachPageAmount={eachPageAmount}
+          isOrder={isOrder}
+          data={searchCust}
+          setdata={setCustRender}
+          redo={redo}
+          basicUrl={basicUrl}
+          setComparingArray={setSearchCust}
+          changePage={changePage}
+        />
+      )}
 
-        {isOrder ? (
-          <ProvideData.Provider
-            value={{
-              basicUrl,
-              redo,
-              isOrder,
-              data: orderRender,
-            }}
-          >
+      {isOrder ? (
+        <ProvideData.Provider
+          value={{
+            basicUrl,
+            redo,
+            isOrder,
+            data: orderRender,
+          }}
+        >
+          {!orderRender ? (
             <Show
               key="order"
               eachPageAmount={eachPageAmount}
               data={orderRender}
               isOrder={isOrder}
             />
-          </ProvideData.Provider>
-        ) : (
-          <ProvideData.Provider
-            value={{ data: custRender, basicUrl, redo, isOrder }}
-          >
+          ) : (
+            <Loading />
+          )}
+        </ProvideData.Provider>
+      ) : (
+        <ProvideData.Provider
+          value={{ data: custRender, basicUrl, redo, isOrder }}
+        >
+          {custRender ? (
             <Show
               key="customer"
               eachPageAmount={eachPageAmount}
               data={custRender}
               isOrder={isOrder}
             />
-          </ProvideData.Provider>
-        )}
-      </div>
-    );
-  }
+          ) : (
+            <Loading />
+          )}
+        </ProvideData.Provider>
+      )}
+    </div>
+  );
 };
 
 export default Interface;
