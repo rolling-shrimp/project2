@@ -17,10 +17,12 @@ const Interface = () => {
     setOrderRender,
     setSearchCust,
     setSearchOrd,
-  ] = useFetchData();
+  ] = useFetchData(null, "https://crud-project-yh8x.onrender.com");
 
   const [isOrder, setIsOrder] = useState(false);
-  const [basicUrl, setBasicUrl] = useState("http://localhost:3503");
+  const [basicUrl, setBasicUrl] = useState(
+    "https://crud-project-yh8x.onrender.com"
+  );
   const [eachPageAmount, setEachPageAmount] = useState(5);
   const { Loading, setQuery } = useContext(Thecontex);
 

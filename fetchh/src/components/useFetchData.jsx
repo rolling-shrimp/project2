@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import axiosFun from "../AxiosFun/axiosFun";
-const useFetchData = (id) => {
-  let basicUrl = "http://localhost:3503";
+
+const useFetchData = (id, env) => {
+  let basicUrl = env;
   const [custRender, setCustRender] = useState([]);
   const [orderRender, setOrderRender] = useState([]);
   const [searchCust, setSearchCust] = useState([]);

@@ -6,7 +6,10 @@ import SingleData from "./SingleData";
 const CheckData = ({ theId }) => {
   const { checkDataDetail } = useContext(Thecontex);
 
-  const resource = useFetchData(theId);
+  const resource = useFetchData(
+    theId,
+    "https://crud-project-yh8x.onrender.com"
+  );
 
   return (
     <section className="custDataOneSection pt-1 pb-1 d-flex flex-column justify-content-center align-items-center">
