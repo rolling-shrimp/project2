@@ -9,8 +9,8 @@ export const submitSearch = (data, query, setdata, setQuery) => {
       if (value !== item[key]) {
         return false;
       }
-      return true;
     }
+    return true;
   });
 
   if (searChedArray.length === 0) {

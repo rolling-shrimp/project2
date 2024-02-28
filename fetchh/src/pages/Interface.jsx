@@ -20,10 +20,10 @@ const Interface = () => {
   ] = useFetchData(null, "https://crud-project-yh8x.onrender.com");
 
   const [isOrder, setIsOrder] = useState(false);
-  const [basicUrl, setBasicUrl] = useState(
+  const [basicUrl /* ignored */] = useState(
     "https://crud-project-yh8x.onrender.com"
   );
-  const [eachPageAmount, setEachPageAmount] = useState(5);
+  const [eachPageAmount /* ignored */] = useState(5);
   const { Loading, setQuery } = useContext(Thecontex);
 
   //the changing page eventhandler

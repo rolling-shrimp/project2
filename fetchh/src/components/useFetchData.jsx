@@ -31,7 +31,7 @@ const useFetchData = (id, env) => {
           return result;
         case "error":
           throw result;
-        case "default":
+        default:
           throw new Error("Unknown status");
       }
     };
