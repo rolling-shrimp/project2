@@ -44,7 +44,7 @@ export const customerInputVal = (data) => {
         "any.required": "Zip不能為空",
       }),
     City: JOi.string()
-      .max(10)
+      .max(20)
       .min(2)
       .required()
       .pattern(new RegExp("^[\\p{L} ]*$", "u"))
