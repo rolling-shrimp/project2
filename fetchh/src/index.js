@@ -7,12 +7,8 @@ import App from "./App";
 import "bootstrap";
 import { BrowserRouter } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
-const rootElement = document.getElementById("root");
-// createRoot(rootElement).render(
-//   <BrowserRouter>
-//     <App />
-//   </BrowserRouter>
-// );
+// const rootElement = document.getElementById("root");
+// rootElement.render(<App />)
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
