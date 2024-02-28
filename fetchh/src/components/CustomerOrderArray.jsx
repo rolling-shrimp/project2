@@ -98,6 +98,7 @@ const CustomerOrderArray = ({ data, item, isOrder }) => {
           <button
             onClick={() => {
               deleteInf(
+                data,
                 `${basicUrl}/CustDelete/${item._id}`,
                 {
                   id: item._id,
