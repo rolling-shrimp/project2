@@ -42,6 +42,8 @@ export const createNewData = async (
       case "order":
         dataToCreate = { ...query, type };
         break;
+      default:
+        return;
     }
     try {
       await axiosFun.post(`${basicUrl}/submit`, dataToCreate);
