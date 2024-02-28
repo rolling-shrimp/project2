@@ -60,7 +60,7 @@ const useFetchData = (id, env) => {
       }
     };
     fetch();
-  }, []);
+  }, [basicUrl, id]);
 
   useEffect(() => {
     let fetch = true;

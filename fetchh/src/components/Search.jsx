@@ -46,7 +46,6 @@ const Search = ({ setdata, isOrder, data, redo, basicUrl, changePage }) => {
               placeholder={item}
               onChange={changing}
               value={query.hasOwnProperty(item) ? query[item] : ""}
-              defaultValue={""}
             />
           ))
         )}

@@ -2,7 +2,7 @@ import React from "react";
 import { ListGroup } from "react-bootstrap";
 import "../assets/custDataOne/custDataOnes.css";
 const SingleData = ({ dataToRender, version }) => {
-  if (version == "cust") {
+  if (version === "cust") {
     const { CustID, Name, Country, State, Zip, City, Address, Status } =
       dataToRender;
     return (

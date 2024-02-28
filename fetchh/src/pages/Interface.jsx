@@ -39,7 +39,7 @@ const Interface = () => {
       : (url = `${basicUrl}/CustDataAll`);
     try {
       let response = await axiosFun.getOnly(url);
-      console.log(response.data);
+
       if (isOrder) {
         setOrderRender(response.data);
         setSearchOrd(response.data);

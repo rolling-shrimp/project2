@@ -6,11 +6,10 @@ export const submitSearch = (data, query, setdata, setQuery) => {
 
   let searChedArray = data.filter((item) => {
     for (const [key, value] of searchQuery) {
-      if (value === item[key]) {
-        return true;
-      } else {
+      if (value !== item[key]) {
         return false;
       }
+      return true;
     }
   });
 

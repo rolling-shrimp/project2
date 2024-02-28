@@ -1,5 +1,5 @@
 import axios from "axios";
-class AxiosFun {
+class AxiosFuntion {
   post(url, obj) {
     return axios.post(url, obj);
   }
@@ -16,4 +16,5 @@ class AxiosFun {
     return axios.delete(url, obj);
   }
 }
-export default new AxiosFun();
+let AxiosFun = new AxiosFuntion();
+export default AxiosFun;

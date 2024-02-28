@@ -38,7 +38,7 @@ const Show = ({ isOrder, data, eachPageAmount }) => {
         setPage((prev) => prev);
       }
     }
-  }, [data]);
+  }, [data, eachPageAmount, page]);
 
   return (
     <>
