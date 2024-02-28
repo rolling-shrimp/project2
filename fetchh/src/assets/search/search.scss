@@ -1,0 +1,109 @@
+.ordinputss {
+  width: 7rem;
+}
+header {
+  width: 100%;
+  padding: 1rem;
+  position: relative;
+  height: 10vh;
+
+  .inputsss {
+    width: fit-content;
+
+    input {
+      width: 6rem;
+      font-size: 1rem;
+      border-radius: 1rem;
+      text-align: left;
+      padding: 5px;
+      border: unset !important;
+      margin-right: 0.5rem;
+    }
+    button {
+      margin-right: 0.25rem;
+    }
+    .showBtn {
+      display: none;
+    }
+  }
+  .showBtn {
+    display: none;
+  }
+  .toggleInput {
+    display: none;
+  }
+}
+
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+@media screen and (max-width: 1310px) {
+  header {
+    height: fit-content;
+    .inputsss {
+      width: 100%;
+      display: grid !important;
+      justify-self: center;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 1rem;
+      input,
+      button {
+        width: 4rem;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 534px) {
+  header {
+    position: sticky;
+    top: 0;
+    background-color: rgb(5, 13, 83);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .buttonArea {
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    div.inputsss {
+      display: none !important;
+    }
+    .showBtn {
+      display: block;
+      font-size: 12px;
+      padding: 0.25rem 0.5rem;
+      height: 1.5rem;
+    }
+    .showToggleInput {
+      width: 95%;
+      display: flex;
+      flex-direction: column;
+      input,
+      button {
+        width: 100%;
+        font-size: 12px;
+        border-radius: unset !important;
+        text-align: center;
+      }
+    }
+  }
+}
+// @media screen and (max-width: 420px) {
+//   header {
+
+//   }
+// }
+@media screen and (max-width: 360px) {
+  header {
+    .showBtn {
+      font-size: 8px;
+    }
+  }
+}

@@ -1,18 +1,21 @@
 import { Routes, Route } from "react-router-dom";
-import { useState, useContext, createContext } from "react";
+import { useState, createContext, Suspense } from "react";
 
 import Interface from "./pages/Interface";
-import Create from "./components/Create";
-import Edit from "./pages/Edit";
-import EditOrd from "./pages/EditOrd";
+import CheckData from "./components/CheckData";
+
 import "./assets/common/comonItem.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 export const Thecontex = createContext();
+const Loading = () => {
+  return (
+    <div style={{ height: "500px", width: "500px" }}>
+      <h1 style={{ color: "white" }}>..............</h1>
+    </div>
+  );
+};
 function App() {
-  let custpath = "/";
-  let ordpath = "/order";
   const CustinputArr = [
-    "UID",
     "CustID",
     "Name",
     "Country",
@@ -20,32 +23,47 @@ function App() {
     "Zip",
     "City",
     "Address",
+    "Status",
   ];
-  // SELECT * FROM customer INNER JOIN orders ON customer.ID = orders.Customer_ID WHERE City LIKE '%New York%' AND State LIKE '%NY%'
 
   const OrderinputArr = [
     "OrderID",
-    "Customer_ID",
+    "CustID",
     "TotalAmount",
     "OrdStatus",
     "SalesName",
   ];
-
+  const [check, setCheck] = useState(null);
+  const [query, setQuery] = useState({});
+  const checkDataDetail = (id) => {
+    setCheck(id);
+  };
   return (
-    <div className="App">
-      <Thecontex.Provider value={{ CustinputArr, OrderinputArr, custpath }}>
+    <div className="App appClass d-flex flex-column align-items-center justify-content-between">
+      <Thecontex.Provider
+        value={{
+          CustinputArr,
+          OrderinputArr,
+          checkDataDetail,
+          check,
+          query,
+          setQuery,
+          Loading,
+        }}
+      >
         <Routes>
           <Route path="/" element={<Interface />}></Route>
-          <Route path="/custCreate" element={<Create />}></Route>
-          <Route path="/custEdit/:id" element={<Edit />}></Route>
         </Routes>
-      </Thecontex.Provider>
-      <Thecontex.Provider value={{ CustinputArr, OrderinputArr, ordpath }}>
-        <Routes>
-          <Route path="/order" element={<Interface />}></Route>
-          <Route path="/ordCreate" element={<Create />}></Route>
-          <Route path="/ordEdit/:id" element={<EditOrd />}></Route>
-        </Routes>
+        {check && (
+          <Suspense fallback={<Loading />}>
+            <CheckData
+              checkDataDetail={checkDataDetail}
+              CustinputArr={CustinputArr}
+              key={check}
+              theId={check}
+            />
+          </Suspense>
+        )}
       </Thecontex.Provider>
     </div>
   );

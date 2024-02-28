@@ -1,25 +1,102 @@
 table {
   width: 95%;
-  border: gray solid 2px !important;
+  border-radius: 1rem;
   padding: 0.5rem;
-  min-height: 15vh;
+  min-height: 40vh;
   overflow-y: scroll;
   background-color: rgb(5, 13, 83);
   color: gray;
-  label,
-  input {
-    font-size: small;
-  }
 
-  input {
-    width: 5rem;
+  th,
+  td {
+    text-align: center;
+    padding: 0.3rem;
+  }
+  thead,
+  tbody {
+    padding: 0.5rem;
   }
 }
-
-td {
-  padding: 0.3rem;
+@media screen and (max-width: 1218px) {
+  table {
+    font-size: 12px;
+  }
 }
-a {
-  text-decoration: none;
-  color: black;
+@media screen and (max-width: 1002px) {
+  table {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 760px) {
+  table {
+    font-size: 6px;
+  }
+}
+@media screen and (max-width: 800px) {
+  table {
+    margin-top: 1rem;
+  }
+}
+@media screen and (max-width: 1310px) {
+  table {
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (max-width: 615px) {
+  table {
+    background-color: rgb(134, 185, 205);
+    thead {
+      display: none;
+    }
+    tbody {
+      display: grid;
+      // flex-direction: column;
+      justify-self: center;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 0.5rem;
+      tr {
+        border: white 2px solid;
+        margin-bottom: 1rem;
+        background-color: rgb(197, 193, 193);
+        td {
+          // background-color: rgb(134, 185, 205);
+          background-color: rgb(197, 193, 193);
+          display: block;
+          font-size: 12px;
+          text-align: left;
+          button {
+            width: 100%;
+          }
+        }
+        .infTd {
+          &::before {
+            content: attr(data-cell) ": ";
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 430px) {
+  table {
+    tbody {
+      tr {
+        td {
+          font-size: 8px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  table {
+    tbody {
+      tr {
+        td {
+          font-size: 6px;
+        }
+      }
+    }
+  }
 }

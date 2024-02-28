@@ -1,114 +1,94 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Thecontex } from "../App";
 import "../assets/show/show.css";
-import { Link } from "react-router-dom";
 
-const Show = ({ data, data2, deleteInf2, deleteInf }) => {
-  const theVal = useContext(Thecontex); // 透過useContext從app.js拿到的數據，可能來判斷目前處於哪個route並決定出現在該route的元素
+import ArraySegment from "./ArraySegment";
+
+const Show = ({ isOrder, data, eachPageAmount }) => {
+  //the object which has two arrays to set the input columns
+  const theVal = useContext(Thecontex);
+
+  const [page, setPage] = useState(1);
+  const [maxLimit, setMaxLimit] = useState(null);
+  const nextPage = () => {
+    if (page < maxLimit) {
+      setPage((prev) => prev + 1);
+    }
+  };
+  const lastPage = () => {
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+    }
+  };
+
+  useEffect(() => {
+    if (data.length % eachPageAmount === 0) {
+      setMaxLimit(data.length / eachPageAmount);
+      eachPageAmount * page <= data.length
+        ? setPage((prev) => prev)
+        : setPage((prev) => prev - 1);
+    } else {
+      if (data.length < eachPageAmount) {
+        setMaxLimit(1);
+        setPage(1);
+      } else {
+        let remainder = data.length % eachPageAmount;
+        let removeRemainder = data.length - remainder;
+        setMaxLimit(removeRemainder / eachPageAmount + 1);
+        setPage((prev) => prev);
+      }
+    }
+  }, [data]);
 
   return (
     <>
-      {/* 只要route是顯示客戶資料的route就顯示此<table>*/}
-      {theVal.custpath && (
+      {isOrder ? (
         <table>
           <thead>
             <tr>
               <th colSpan="2">{""}</th>
-              {theVal.CustinputArr.map((item) => (
-                <th>{item}</th>
-              ))}
-              <th>Status</th>
-              <th>三年的訂單消費總和</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* data是在父親元件interface.jsx當中儲存查詢客戶資料結果的變數，查找到的內容會在這邊呈現 */}
-            {data &&
-              data.map((item) => (
-                <tr>
-                  <td style={{ textAlign: "center" }}>
-                    {/* 會進入客戶資料的修改頁面*/}
-                    <button>
-                      <Link to={`/custEdit/${item.ID}`}>修改</Link>
-                    </button>
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    {/* deleteInf是富元素interface.jsx當中的可帶入參數進行刪除客戶資料的function，這邊帶入藥傳到後端的route和查找到的id*/}
-                    <button
-                      onClick={() => {
-                        deleteInf(
-                          `http://localhost:3503/CustDelete/${item.UID}`,
-                          { id: item.ID }
-                        );
-                      }}
-                    >
-                      刪除
-                    </button>
-                  </td>
-                  <td>{item.UID}</td>
-                  <td>{item.ID}</td>
-                  <td>{item.Name}</td>
-                  <td>{item.Country}</td>
-                  <td>{item.State}</td>
-                  <td>{item.Zip}</td>
-                  <td>{item.City}</td>
-                  <td>{item.Address}</td>
-                  <td>{item.Status}</td>
-                  <td>{item.ThreeYearTotalAmount}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      )}
 
-      {/* 只要route是顯示訂單資料的route就顯示此<table>*/}
-      {theVal.ordpath && (
-        <table>
-          <thead>
-            <tr>
-              <th colSpan="2">{""}</th>
               {theVal.OrderinputArr.map((item) => (
                 <th>{item}</th>
               ))}
               <th colSpan="4">Date</th>
             </tr>
           </thead>
-          <tbody>
-            {/* data2是在父親元件interface.jsx當中儲存查詢定但資料結果的變數，查找到的內容會在這邊呈現 */}
-            {data2 &&
-              data2.map((item) => (
-                <tr>
-                  <td style={{ textAlign: "center" }}>
-                    {/* 會進入訂單資料的修改頁面*/}
-                    <button>
-                      <Link to={`/ordEdit/${item.ID}`}>修改</Link>
-                    </button>
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    {/* deleteInf2是父元件interface.jsx當中的可帶入參數進行刪除訂單資料的function，這邊帶入藥傳到後端的route和查找到的id*/}
-                    <button
-                      onClick={() => {
-                        deleteInf2(
-                          `http://localhost:3503/OrdDelete/${item.ID}`,
-                          { id: item.ID }
-                        );
-                      }}
-                    >
-                      刪除
-                    </button>
-                  </td>
-
-                  <td>{item.ID}</td>
-                  <td>{item.Customer_ID}</td>
-                  <td>{item.TotalAmount}</td>
-                  <td>{item.Status}</td>
-                  <td>{item.Sales_Name}</td>
-                  <td>{item.Order_Date}</td>
-                </tr>
+          <ArraySegment
+            key={page}
+            eachPageAmount={eachPageAmount}
+            page={page}
+            isOrder={isOrder}
+          />
+        </table>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th colSpan="3">{""}</th>
+              {theVal.CustinputArr.map((item) => (
+                <th>{item}</th>
               ))}
-          </tbody>
+
+              <th>近三年的訂單消費總和</th>
+            </tr>
+          </thead>
+          <ArraySegment
+            key={page}
+            eachPageAmount={eachPageAmount}
+            page={page}
+            isOrder={isOrder}
+          />
         </table>
       )}
+
+      <span>
+        <button onClick={lastPage}>上一頁</button>
+
+        <span>{page}</span>
+
+        <button onClick={nextPage}>下一頁</button>
+      </span>
     </>
   );
 };

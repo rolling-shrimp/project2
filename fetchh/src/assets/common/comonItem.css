@@ -1,41 +1,23 @@
-@charset "UTF-8";
-label,
-input {
-  font-size: small !important;
-}
-
-input {
-  width: 5rem;
-}
-
-header {
-  width: 100%;
-  padding: 1rem;
-}
-
 h5 {
   margin-bottom: unset !important;
 }
 
-.inputsss label,
-.inputsss input {
-  font-size: small;
+body {
+  padding: 5rem;
+  background-color: rgb(5, 13, 83) !important;
 }
-.inputsss label {
-  margin-left: 0.5rem;
+
+button {
+  font-size: 1rem;
+  border-radius: 1rem !important;
+  border: white solid 1px !important;
+  background-color: rgb(5, 13, 83);
   color: white;
+  padding: 0.05rem 0.5rem;
 }
-.inputsss input {
-  width: 5rem;
-  margin-left: 0.2rem;
-}
-.inputsss .headersearchbut {
-  margin-left: 0.5rem;
-}
-.inputsss .create {
-  position: absolute;
-  right: 3rem;
-  top: 1rem;
+button:hover {
+  background-color: rgb(134, 185, 205);
+  color: black;
 }
 
 .button {
@@ -55,16 +37,6 @@ a {
   margin-right: 0.5rem;
 }
 
-.creating {
-  position: absolute;
-  top: 50%; /* 将元素的顶部定位到容器的中央 */
-  left: 50%; /* 将元素的左侧定位到容器的中央 */
-  transform: translate(-50%, -50%);
-  width: 95%;
-  border: 2px black solid;
-  padding: 0.5rem;
-}
-
 .thepadding {
   padding: 0.5rem;
   width: 20%;
@@ -74,6 +46,31 @@ a {
   margin-left: 0.2rem;
 }
 
-header {
-  background-color: rgb(5, 13, 83);
+.appClass {
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  border-radius: 1rem;
+  background-color: rgb(134, 185, 205);
+  border: 5px white solid;
+  padding-bottom: 1rem;
+}
+
+.custDataZone {
+  height: 50vh;
+  border: 2px white solid;
+}
+
+p {
+  margin-bottom: unset !important;
+}
+
+@media screen and (max-width: 615px) {
+  body {
+    padding: 0 !important;
+    background-color: rgb(134, 185, 205) !important;
+  }
+  body #root .appClass {
+    border: unset;
+    border-radius: unset;
+  }
 }/*# sourceMappingURL=comonItem.css.map */

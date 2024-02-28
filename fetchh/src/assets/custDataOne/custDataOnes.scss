@@ -1,0 +1,110 @@
+.custDataOneSection {
+  height: fit-content;
+  width: 80%;
+
+  .top {
+    height: fit-content;
+    width: 100%;
+    .rightLeft {
+      border: 2px gray solid;
+      border-radius: 1rem;
+      background-color: rgb(5, 13, 83);
+      color: gray;
+    }
+    .right {
+      width: 50%;
+      height: fit-content;
+      .list-group-item {
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+      .insideCustOrd {
+        border: gray 2px solid p {
+
+        }
+        font-size: 12px;
+        height: fit-content;
+        color: black;
+      }
+    }
+    .left {
+      width: 30%;
+      height: fit-content;
+      .list-group-item {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .custDataOneSection {
+    .top {
+      .rightLeft {
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1047px) {
+  .custDataOneSection {
+    .top {
+      .rightLeft {
+        h2 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1016px) {
+  .custDataOneSection {
+    .top {
+      .right {
+        .list-group-item {
+          font-size: 12px;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+        }
+      }
+      .left {
+        font-size: 12px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 886px) {
+  .custDataOneSection {
+    width: 50%;
+    .top {
+      flex-direction: column !important;
+      .right {
+        width: 100%;
+        .list-group-item {
+          font-size: 8px;
+        }
+      }
+      .left {
+        width: 100%;
+        font-size: 8px;
+        margin-bottom: 1rem;
+      }
+      .rightLeft {
+        h2 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 615px) {
+  .custDataOneSection {
+    width: 100%;
+  }
+}
