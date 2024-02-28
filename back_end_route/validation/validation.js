@@ -27,7 +27,7 @@ export const customerInputVal = (data) => {
         "string.pattern.base": "Country只能輸入文字，不能有符號或數字。",
       }),
     State: JOi.string()
-      .max(10)
+      .max(20)
       .min(2)
       .allow("")
       .pattern(new RegExp("^[\\p{L} ]*$", "u"))
