@@ -87,7 +87,7 @@ const Interface = () => {
             data: orderRender,
           }}
         >
-          {!orderRender ? (
+          {orderRender ? (
             <Show
               key="order"
               eachPageAmount={eachPageAmount}
@@ -102,7 +102,7 @@ const Interface = () => {
         <ProvideData.Provider
           value={{ data: custRender, basicUrl, redo, isOrder }}
         >
-          {custRender ? (
+          {custRender.length !== 0 ? (
             <Show
               key="customer"
               eachPageAmount={eachPageAmount}

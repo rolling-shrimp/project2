@@ -3,7 +3,7 @@ import axiosFun from "../AxiosFun/axiosFun";
 import { ProvideData } from "../pages/Interface";
 import { Thecontex } from "../App";
 import { editData, deleteInf } from "../eventHandler/eventHandling";
-const CustomerOrderArray = ({ item, isOrder }) => {
+const CustomerOrderArray = ({ data, item, isOrder }) => {
   const { redo, basicUrl } = useContext(ProvideData);
   const { checkDataDetail, query, setQuery } = useContext(Thecontex);
 
@@ -31,6 +31,7 @@ const CustomerOrderArray = ({ item, isOrder }) => {
           <button
             onClick={() => {
               deleteInf(
+                data,
                 `${basicUrl}/OrdDelete/${item._id}`,
                 {
                   id: item._id,

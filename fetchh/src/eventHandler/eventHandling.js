@@ -96,7 +96,8 @@ export const editData = async (
 };
 
 //the delete data in database function
-export const deleteInf = async (url, obj, axiosFun, redo) => {
+export const deleteInf = async (data, url, obj, axiosFun, redo) => {
+  data.length === 3 && alert("不能再刪除了");
   if (window.confirm("確定要刪除嗎?")) {
     try {
       await axiosFun.delete(url, obj);

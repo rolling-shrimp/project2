@@ -21,7 +21,12 @@ const ArraySegment = ({ isOrder, page, eachPageAmount }) => {
   return (
     <tbody>
       {dataSlice.map((item) => (
-        <CustomerOrderArray key={item._id} isOrder={isOrder} item={item} />
+        <CustomerOrderArray
+          data={data}
+          key={item._id}
+          isOrder={isOrder}
+          item={item}
+        />
       ))}
     </tbody>
   );
