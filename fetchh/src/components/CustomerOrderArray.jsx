@@ -61,7 +61,7 @@ const CustomerOrderArray = ({ data, item, isOrder }) => {
           {item.SalesName}
         </td>
         <td className="infTd" data-cell="OrderDate">
-          {/* {item.OrderDate.split("T")[0]} */}
+          {item.OrderDate.split("T")[0]}
         </td>
       </tr>
     );
