@@ -1,5 +1,4 @@
-import { Routes, Route } from "react-router-dom";
-import { useState, createContext, Suspense } from "react";
+import { useState, createContext } from "react";
 
 import Interface from "./pages/Interface";
 import CheckData from "./components/CheckData";
@@ -10,7 +9,7 @@ export const Thecontex = createContext();
 const Loading = () => {
   return (
     <div style={{ height: "500px", width: "500px" }}>
-      <h1 style={{ color: "white" }}>......Loading.........</h1>
+      <h4 style={{ color: "white" }}>......Loading.........</h4>
     </div>
   );
 };
@@ -35,6 +34,11 @@ function App() {
   ];
   const [check, setCheck] = useState(null);
   const [query, setQuery] = useState({});
+  const [isOrder, setIsOrder] = useState(false);
+  const changePage = () => {
+    setIsOrder(!isOrder);
+    setQuery({});
+  };
   const checkDataDetail = (id) => {
     setCheck(id);
   };
@@ -51,18 +55,29 @@ function App() {
           Loading,
         }}
       >
-        <Routes>
-          <Route path="/" element={<Interface />}></Route>
-        </Routes>
+        {isOrder ? (
+          <Interface
+            key="orderInterface"
+            isOrder={isOrder}
+            changePage={changePage}
+          />
+        ) : (
+          <Interface
+            key="customerInterface"
+            isOrder={isOrder}
+            changePage={changePage}
+          />
+        )}
+
         {check && (
-          <Suspense fallback={<Loading />}>
-            <CheckData
-              checkDataDetail={checkDataDetail}
-              CustinputArr={CustinputArr}
-              key={check}
-              theId={check}
-            />
-          </Suspense>
+          <CheckData
+            checkDataDetail={checkDataDetail}
+            CustinputArr={CustinputArr}
+            key={check}
+            theId={check}
+            Loading={Loading}
+            isOrder={isOrder}
+          />
         )}
       </Thecontex.Provider>
     </div>

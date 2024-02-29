@@ -1,10 +1,15 @@
 //the search function
-export const submitSearch = (data, query, setdata, setQuery) => {
+export const submitSearch = (
+  compareWithQuery,
+  query,
+  setCompareWhithQuery,
+  setQuery
+) => {
   let searchQuery = Object.entries(query).filter(
     ([key, value]) => value !== ""
   );
-
-  let searChedArray = data.filter((item) => {
+  console.log(searchQuery);
+  let searChedArray = compareWithQuery.filter((item) => {
     for (const [key, value] of searchQuery) {
       if (value !== item[key]) {
         return false;
@@ -16,7 +21,7 @@ export const submitSearch = (data, query, setdata, setQuery) => {
   if (searChedArray.length === 0) {
     alert("查無資料");
   } else {
-    setdata(searChedArray);
+    setCompareWhithQuery(searChedArray);
   }
   setQuery({});
 };
@@ -109,5 +114,27 @@ export const deleteInf = async (data, url, obj, axiosFun, redo) => {
     } catch (e) {
       alert("刪除失敗");
     }
+  }
+};
+
+//the Initial or redo eventHandler
+export const redo = async (
+  axiosFun,
+  isOrder,
+  basicUrl,
+  setToRender,
+  setCompareWhithQuery
+) => {
+  let url;
+  isOrder
+    ? (url = `${basicUrl}/OrdDataAll`)
+    : (url = `${basicUrl}/CustDataAll`);
+  try {
+    let response = await axiosFun.getOnly(url);
+
+    setToRender(response.data);
+    setCompareWhithQuery(response.data);
+  } catch (e) {
+    console.log(e);
   }
 };

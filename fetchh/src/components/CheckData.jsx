@@ -3,10 +3,11 @@ import { Thecontex } from "../App";
 import useFetchData from "../components/useFetchData";
 import "../assets/custDataOne/custDataOnes.css";
 import SingleData from "./SingleData";
-const CheckData = ({ theId }) => {
+const CheckData = ({ isOrder, theId, Loading }) => {
   const { checkDataDetail } = useContext(Thecontex);
 
   const resource = useFetchData(
+    isOrder,
     theId,
     "https://crud-project-yh8x.onrender.com"
   );
@@ -16,15 +17,19 @@ const CheckData = ({ theId }) => {
       <div className="top d-flex flex-row justify-content-evenly align-items-start mb-1 p-2">
         <div className="rightLeft left p-2">
           <h2 className="p-2">Customer Data</h2>
-          {resource && (
+          {resource ? (
             <SingleData dataToRender={resource.customerData} version={"cust"} />
+          ) : (
+            <Loading />
           )}
         </div>
 
         <div className="rightLeft right p-2">
           <h2 className="p-2">Customer's Order Record</h2>
-          {resource && (
+          {resource ? (
             <SingleData dataToRender={resource.orderData} version={"ord"} />
+          ) : (
+            <Loading />
           )}
         </div>
       </div>

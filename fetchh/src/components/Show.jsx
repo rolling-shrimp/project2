@@ -22,8 +22,7 @@ const Show = ({ isOrder, data, eachPageAmount }) => {
   };
 
   useEffect(() => {
-    if (data.length % eachPageAmount === 0) {
-      setMaxLimit(data.length / eachPageAmount);
+    if (data.length % eachPageAmount === 0 && data.length !== 0) {
       eachPageAmount * page <= data.length
         ? setPage((prev) => prev)
         : setPage((prev) => prev - 1);

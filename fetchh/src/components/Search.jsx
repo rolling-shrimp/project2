@@ -4,7 +4,15 @@ import { Thecontex } from "../App";
 import { submitSearch, createNewData } from "../eventHandler/eventHandling";
 import "../assets/search/search.css";
 import ToggleInput from "./ToggleInput";
-const Search = ({ setdata, isOrder, data, redo, basicUrl, changePage }) => {
+const Search = ({
+  basicUrl,
+  setToRender,
+  setCompareWhithQuery,
+  isOrder,
+  compareWhithQuery,
+  redo,
+  changePage,
+}) => {
   const theInputLabel = useContext(Thecontex);
   const { setQuery, query } = useContext(Thecontex);
   const listRef = useRef();
@@ -52,12 +60,18 @@ const Search = ({ setdata, isOrder, data, redo, basicUrl, changePage }) => {
         <button
           type="button"
           onClick={() => {
-            submitSearch(data, query, setdata, setQuery);
+            submitSearch(compareWhithQuery, query, setToRender, setQuery);
           }}
         >
           search
         </button>
-        <button onClick={redo}>redo</button>
+        <button
+          onClick={() => {
+            redo();
+          }}
+        >
+          redo
+        </button>
         <button
           onClick={() => {
             createNewData(isOrder, query, basicUrl, redo, setQuery, axiosFun);
@@ -85,12 +99,22 @@ const Search = ({ setdata, isOrder, data, redo, basicUrl, changePage }) => {
           className="showBtn"
           type="button"
           onClick={() => {
-            submitSearch(data, query, setdata, setQuery);
+            submitSearch(
+              compareWhithQuery,
+              query,
+              setCompareWhithQuery,
+              setQuery
+            );
           }}
         >
           search
         </button>
-        <button className="showBtn" onClick={redo}>
+        <button
+          className="showBtn"
+          onClick={() => {
+            redo();
+          }}
+        >
           redo
         </button>
         <button

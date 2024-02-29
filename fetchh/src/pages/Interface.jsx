@@ -7,31 +7,15 @@ import "../assets/interface/interface.css";
 import { Thecontex } from "../App";
 
 export const ProvideData = createContext();
-const Interface = () => {
-  const [
-    custRender,
-    searchCust,
-    orderRender,
-    searchOrd,
-    setCustRender,
-    setOrderRender,
-    setSearchCust,
-    setSearchOrd,
-  ] = useFetchData(null, "https://crud-project-yh8x.onrender.com");
+const Interface = ({ isOrder, changePage }) => {
+  const [toRender, compareWhithQuery, setToRender, setCompareWhithQuery] =
+    useFetchData(isOrder, null, "https://crud-project-yh8x.onrender.com");
 
-  const [isOrder, setIsOrder] = useState(false);
   const [basicUrl /* ignored */] = useState(
     "https://crud-project-yh8x.onrender.com"
   );
   const [eachPageAmount /* ignored */] = useState(5);
-  const { Loading, setQuery } = useContext(Thecontex);
-
-  //the changing page eventhandler
-  const changePage = () => {
-    setIsOrder(!isOrder);
-    setQuery({});
-  };
-
+  const { Loading } = useContext(Thecontex);
   const redo = async () => {
     let url;
     isOrder
@@ -39,14 +23,9 @@ const Interface = () => {
       : (url = `${basicUrl}/CustDataAll`);
     try {
       let response = await axiosFun.getOnly(url);
-      alert("重新整理完畢");
-      if (isOrder) {
-        setOrderRender(response.data);
-        setSearchOrd(response.data);
-      } else {
-        setCustRender(response.data);
-        setSearchCust(response.data);
-      }
+
+      setToRender(response.data);
+      setCompareWhithQuery(response.data);
     } catch (e) {
       console.log(e);
     }
@@ -54,64 +33,34 @@ const Interface = () => {
 
   return (
     <div className="interface">
-      {isOrder ? (
-        <Search
-          eachPageAmount={eachPageAmount}
-          isOrder={isOrder}
-          data={searchOrd}
-          setdata={setOrderRender}
-          redo={redo}
-          basicUrl={basicUrl}
-          setComparingArray={setSearchOrd}
-          changePage={changePage}
-        />
+      <Search
+        basicUrl={basicUrl}
+        setToRender={setToRender}
+        isOrder={isOrder}
+        toRender={toRender}
+        redo={redo}
+        changePage={changePage}
+        setCompareWhithQuery={setCompareWhithQuery}
+        compareWhithQuery={compareWhithQuery}
+      />
+      {!toRender ? (
+        <Loading />
       ) : (
-        <Search
-          eachPageAmount={eachPageAmount}
-          isOrder={isOrder}
-          data={searchCust}
-          setdata={setCustRender}
-          redo={redo}
-          basicUrl={basicUrl}
-          setComparingArray={setSearchCust}
-          changePage={changePage}
-        />
-      )}
-
-      {isOrder ? (
         <ProvideData.Provider
           value={{
             basicUrl,
             redo,
             isOrder,
-            data: orderRender,
+            data: toRender,
           }}
         >
-          {orderRender ? (
-            <Show
-              key="order"
-              eachPageAmount={eachPageAmount}
-              data={orderRender}
-              isOrder={isOrder}
-            />
-          ) : (
-            <Loading />
-          )}
-        </ProvideData.Provider>
-      ) : (
-        <ProvideData.Provider
-          value={{ data: custRender, basicUrl, redo, isOrder }}
-        >
-          {custRender.length !== 0 ? (
-            <Show
-              key="customer"
-              eachPageAmount={eachPageAmount}
-              data={custRender}
-              isOrder={isOrder}
-            />
-          ) : (
-            <Loading />
-          )}
+          <Show
+            key="order"
+            eachPageAmount={eachPageAmount}
+            data={toRender}
+            isOrder={isOrder}
+            redo={redo}
+          />
         </ProvideData.Provider>
       )}
     </div>
