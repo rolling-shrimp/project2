@@ -54,12 +54,16 @@ const Show = ({ isOrder, data, eachPageAmount }) => {
               <th colSpan="4">Date</th>
             </tr>
           </thead>
-          <ArraySegment
-            key={page}
-            eachPageAmount={eachPageAmount}
-            page={page}
-            isOrder={isOrder}
-          />
+          {data.length !== 0 ? (
+            <ArraySegment
+              key={page}
+              eachPageAmount={eachPageAmount}
+              page={page}
+              isOrder={isOrder}
+            />
+          ) : (
+            <h1>no data now please add</h1>
+          )}
         </table>
       ) : (
         <table>
@@ -73,12 +77,16 @@ const Show = ({ isOrder, data, eachPageAmount }) => {
               <th>近三年的訂單消費總和</th>
             </tr>
           </thead>
-          <ArraySegment
-            key={page}
-            eachPageAmount={eachPageAmount}
-            page={page}
-            isOrder={isOrder}
-          />
+          {data.length !== 0 ? (
+            <ArraySegment
+              key={page}
+              eachPageAmount={eachPageAmount}
+              page={page}
+              isOrder={isOrder}
+            />
+          ) : (
+            <h1>no data now please add</h1>
+          )}
         </table>
       )}
 

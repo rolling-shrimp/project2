@@ -73,12 +73,8 @@
   .custDataOneSection .top .right {
     width: 100%;
   }
-  .custDataOneSection .top .right .list-group-item {
-    font-size: 8px;
-  }
   .custDataOneSection .top .left {
     width: 100%;
-    font-size: 8px;
     margin-bottom: 1rem;
   }
   .custDataOneSection .top .rightLeft h2 {

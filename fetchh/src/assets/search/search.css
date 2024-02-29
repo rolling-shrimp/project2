@@ -12055,7 +12055,7 @@ textarea.form-control-lg {
   header .showToggleInput input,
   header .showToggleInput button {
     width: 100%;
-    font-size: 12px;
+    font-size: 20px;
     border-radius: unset !important;
     text-align: center;
   }

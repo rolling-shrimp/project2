@@ -10,7 +10,7 @@ export const Thecontex = createContext();
 const Loading = () => {
   return (
     <div style={{ height: "500px", width: "500px" }}>
-      <h1 style={{ color: "white" }}>....no data please add.........</h1>
+      <h1 style={{ color: "white" }}>......Loading.........</h1>
     </div>
   );
 };

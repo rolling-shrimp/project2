@@ -39,7 +39,7 @@ const Interface = () => {
       : (url = `${basicUrl}/CustDataAll`);
     try {
       let response = await axiosFun.getOnly(url);
-
+      alert("重新整理完畢");
       if (isOrder) {
         setOrderRender(response.data);
         setSearchOrd(response.data);

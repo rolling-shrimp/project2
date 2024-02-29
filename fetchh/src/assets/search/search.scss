@@ -88,18 +88,13 @@ header {
       input,
       button {
         width: 100%;
-        font-size: 12px;
+        font-size: 20px;
         border-radius: unset !important;
         text-align: center;
       }
     }
   }
 }
-// @media screen and (max-width: 420px) {
-//   header {
-
-//   }
-// }
 @media screen and (max-width: 360px) {
   header {
     .showBtn {
