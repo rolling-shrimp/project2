@@ -26,6 +26,7 @@ const Show = ({ isOrder, data, eachPageAmount }) => {
       eachPageAmount * page <= data.length
         ? setPage((prev) => prev)
         : setPage((prev) => prev - 1);
+      setMaxLimit(data.length / eachPageAmount);
     } else {
       if (data.length < eachPageAmount) {
         setMaxLimit(1);
