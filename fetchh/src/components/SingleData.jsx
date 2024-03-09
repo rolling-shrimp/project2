@@ -37,11 +37,11 @@ const SingleData = ({ dataToRender, version }) => {
     return (
       <Table
         style={{ backgroundColor: "rgb(5, 13, 83)" }}
-        className="insideCustOrd"
+        className="insideCustOrd Table"
       >
-        <tbody style={{ backgroundColor: "rgb(5, 13, 83)" }}>
+        <tbody className="tbody" style={{ backgroundColor: "rgb(5, 13, 83)" }}>
           {dataToRender.map((item) => (
-            <tr className="mt-1 d-flex flex-column" key={item.OrderID}>
+            <tr className="modaltr mt-2 d-flex flex-column " key={item.OrderID}>
               <td> order id:&nbsp;{item.OrderID} </td>{" "}
               <td> amount:&nbsp;{item.TotalAmount}</td>{" "}
               <td>date:&nbsp;{item.OrderDate.split("T")[0]}</td>

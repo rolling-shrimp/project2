@@ -2,42 +2,24 @@
   height: -moz-fit-content;
   height: fit-content;
 }
-.custDataOneSection .top {
-  height: -moz-fit-content;
-  height: fit-content;
-  width: 100%;
-}
-.custDataOneSection .top .rightLeft {
-  border: 2px gray solid;
-  border-radius: 1rem;
-  background-color: rgb(5, 13, 83);
-  color: gray;
-}
-.custDataOneSection .top .right {
-  width: 50%;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-.custDataOneSection .top .right .list-group-item {
-  max-width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.custDataOneSection .top .left {
-  width: 30%;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-.custDataOneSection .top .left .list-group-item {
-  max-width: 100%;
-}
 
 .insideCustOrd {
   color: black;
   overflow-y: auto;
   font-size: 1rem !important;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.Table {
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  min-height: unset;
+}
+
+.tbody {
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .modal-dialog {
@@ -47,11 +29,6 @@
 @media screen and (max-width: 1280px) {
   .custDataOneSection .top .rightLeft h2 {
     font-size: 1.5rem;
-  }
-}
-@media screen and (max-width: 1047px) {
-  .custDataOneSection .top .rightLeft h2 {
-    font-size: 1rem;
   }
 }
 @media screen and (max-width: 1016px) {
@@ -81,6 +58,13 @@
   }
   .custDataOneSection .top .rightLeft h2 {
     font-size: 1rem;
+  }
+}
+@media screen and (max-width: 770px) {
+  .insideCustOrd tbody .modaltr {
+    display: unset !important;
+    padding: 0 !important;
+    border: unset !important;
   }
 }
 @media screen and (max-width: 615px) {

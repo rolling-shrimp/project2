@@ -50,7 +50,10 @@ const CheckData = ({ open, setOpen, isOrder, theId }) => {
             <Col>
               {" "}
               {resource ? (
-                <Card style={{ backgroundColor: "#050d53", color: "white" }}>
+                <Card
+                  className="custDataOneSection"
+                  style={{ backgroundColor: "#050d53", color: "white" }}
+                >
                   <Card.Body>
                     <Card.Title>客戶詳細訂單資料</Card.Title>
 

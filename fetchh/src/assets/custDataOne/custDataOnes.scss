@@ -1,39 +1,18 @@
 .custDataOneSection {
   height: fit-content;
-
-  .top {
-    height: fit-content;
-    width: 100%;
-    .rightLeft {
-      border: 2px gray solid;
-      border-radius: 1rem;
-      background-color: rgb(5, 13, 83);
-      color: gray;
-    }
-    .right {
-      width: 50%;
-      height: fit-content;
-      .list-group-item {
-        max-width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-    .left {
-      width: 30%;
-      height: fit-content;
-      .list-group-item {
-        max-width: 100%;
-      }
-    }
-  }
 }
 .insideCustOrd {
   color: black;
   overflow-y: auto;
   font-size: 1rem !important;
+  height: fit-content;
+}
+.Table {
+  height: fit-content !important;
+  min-height: unset;
+}
+.tbody {
+  height: fit-content;
 }
 .modal-dialog {
   overflow-y: auto;
@@ -49,17 +28,7 @@
     }
   }
 }
-@media screen and (max-width: 1047px) {
-  .custDataOneSection {
-    .top {
-      .rightLeft {
-        h2 {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
-}
+
 @media screen and (max-width: 1016px) {
   .custDataOneSection {
     .top {
@@ -97,22 +66,19 @@
     }
   }
 }
+@media screen and (max-width: 770px) {
+  .insideCustOrd {
+    tbody {
+      .modaltr {
+        display: unset !important;
+        padding: 0 !important;
+        border: unset !important;
+      }
+    }
+  }
+}
 @media screen and (max-width: 615px) {
   .custDataOneSection {
     width: 100%;
-    // .top {
-    //   .right {
-    //     .list-group-item {
-    //       padding: 1 !important;
-    //       font-size: 12px !important;
-    //     }
-    //   }
-    //   .left {
-    //     .list-group-item {
-    //       padding: 1 !important;
-    //       font-size: 12px !important;
-    //     }
-    //   }
-    // }
   }
 }
