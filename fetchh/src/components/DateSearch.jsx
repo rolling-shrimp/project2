@@ -27,7 +27,7 @@ const DateSearch = ({ thedate, setTheDate, setRedoDisable }) => {
       });
       setToRender(newArray);
     }
-  }, [thedate]);
+  }, [thedate, compareWhithQuery, setRedoDisable, setToRender]);
   return (
     <Form.Group className="  d-flex flex-row align-items-center justify-content-start">
       <Form.Control

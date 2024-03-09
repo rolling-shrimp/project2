@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Row, Col, Table } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { Thecontex } from "../App";
 import "../assets/show/show.css";
 

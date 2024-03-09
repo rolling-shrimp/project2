@@ -12,9 +12,11 @@ export const submitSearch = (
     return;
   }
 
+  let toCompare = isNaN(parseInt(query)) ? query : parseInt(query);
+
   let searChedArray = compareWithQuery.filter((item) => {
     for (let property in item) {
-      if (item[property] == query) {
+      if (item[property] === toCompare) {
         return true;
       }
     }
