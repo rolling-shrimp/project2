@@ -66,7 +66,11 @@ const CustomerOrderArray = ({ data, item, isOrder }) => {
                   id: item._id,
                 },
                 axiosFun,
-                redo
+                redoAfterCreatEddit,
+                setToRender,
+                setCompareWhithQuery,
+                basicUrl,
+                isOrder
               );
             }}
           >

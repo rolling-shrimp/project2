@@ -16,6 +16,8 @@ import AxiosFun from "../AxiosFun/axiosFun";
 import "../assets/search/search.css";
 import { Thecontex } from "../App";
 import { ProvideData } from "../pages/Interface";
+import AddOrderData from "./AddOrderData";
+import AddCustData from "./AddCustData";
 
 const CreateAndEddit = ({ setOpen, open, type, id, singleData }) => {
   const { basicUrl, setToRender, isOrder, setCompareWhithQuery } =
@@ -87,70 +89,23 @@ const CreateAndEddit = ({ setOpen, open, type, id, singleData }) => {
           {({ handleSubmit, handleChange, values, errors, resetForm }) => (
             <Form noValidate onSubmit={handleSubmit}>
               {isOrder ? (
-                <>
-                  {theInputLabel.map((item) => (
-                    <Form.Group
-                      key={item}
-                      className="d-flex flex-column align-items-start mb-3"
-                    >
-                      <Form.Label>{item} </Form.Label>
-                      <Form.Control
-                        className="w-100 formElement"
-                        type={item === "TotalAmount" ? "number" : "text"}
-                        name={item}
-                        placeholder={type === "修改" ? singleData[item] : item}
-                        onChange={handleChange}
-                        value={values.hasOwnProperty(item) ? values[item] : ""}
-                        isInvalid={!!errors[item]}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors[item]}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                  ))}
-                  <Form.Group
-                    key="OrderDate"
-                    className="d-flex flex-column align-items-start mb-3"
-                  >
-                    <Form.Label>OrderDate</Form.Label>
-                    <Form.Control
-                      className="w-100 formElement "
-                      type="date"
-                      name="OrderDate"
-                      placeholder="OrderDate"
-                      onChange={handleChange}
-                      value={
-                        values.hasOwnProperty("OrderDate")
-                          ? values.OrderDate
-                          : ""
-                      }
-                      isInvalid={!!errors.OrderDate}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.OrderDate}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </>
+                <AddOrderData
+                  theInputLabel={theInputLabel}
+                  handleChange={handleChange}
+                  values={values}
+                  errors={errors}
+                  type={type}
+                  singleData={singleData}
+                />
               ) : (
-                theInputLabel.map((item) => (
-                  <Form.Group
-                    key={item}
-                    className="d-flex flex-column align-items-start mb-3"
-                  >
-                    <Form.Label>{item}</Form.Label>
-                    <Form.Control
-                      className="w-100 formElement "
-                      name={item}
-                      placeholder={type === "修改" ? singleData[item] : item}
-                      onChange={handleChange}
-                      value={values.hasOwnProperty(item) ? values[item] : ""}
-                      isInvalid={!!errors[item]}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors[item]}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                ))
+                <AddCustData
+                  theInputLabel={theInputLabel}
+                  handleChange={handleChange}
+                  values={values}
+                  errors={errors}
+                  type={type}
+                  singleData={singleData}
+                />
               )}
               <Form.Group>
                 <Container>

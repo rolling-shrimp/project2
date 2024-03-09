@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { ProvideData } from "../pages/Interface";
 const DateSearch = ({ thedate, setTheDate, setRedoDisable }) => {
@@ -6,6 +6,18 @@ const DateSearch = ({ thedate, setTheDate, setRedoDisable }) => {
   const changeDate = (e) => {
     const { name, value } = e.target;
     setTheDate({ ...thedate, [name]: value });
+  };
+  const [inputType, setInputType] = useState({
+    startDate: "text",
+    endDate: "text",
+  });
+  const focus = (e) => {
+    const { name } = e.target;
+    setInputType({ ...inputType, [name]: "date" });
+  };
+  const blur = (e) => {
+    const { name } = e.target;
+    setInputType({ ...inputType, [name]: "text" });
   };
   useEffect(() => {
     if (thedate.startDate !== "" || thedate.endDate !== "") {
@@ -33,19 +45,25 @@ const DateSearch = ({ thedate, setTheDate, setRedoDisable }) => {
       <Form.Control
         className="dateInput "
         name="startDate"
-        type="date"
         id=""
         value={thedate.startDate}
         onChange={changeDate}
+        type={inputType.startDate}
+        onFocus={focus}
+        onBlur={blur}
+        placeholder="開始日期"
       />
       <p className="dateInput">~</p>
       <Form.Control
-        className="dateInput  "
+        className="dateInput "
         name="endDate"
-        type="date"
+        type={inputType.endDate}
         id=""
         value={thedate.endDate}
         onChange={changeDate}
+        onFocus={focus}
+        onBlur={blur}
+        placeholder="結束日期"
       />
     </Form.Group>
   );
