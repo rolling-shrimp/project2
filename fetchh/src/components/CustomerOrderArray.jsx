@@ -1,50 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import axiosFun from "../AxiosFun/axiosFun";
 import { ProvideData } from "../pages/Interface";
 import { Thecontex } from "../App";
-import { editData, deleteInf } from "../eventHandler/eventHandling";
+import { deleteInf, redoAfterCreatEddit } from "../eventHandler/eventHandling";
+import CreateAndEddit from "./CreateAndEddit";
 const CustomerOrderArray = ({ data, item, isOrder }) => {
-  const { redo, basicUrl } = useContext(ProvideData);
-  const { checkDataDetail, query, setQuery } = useContext(Thecontex);
-
+  const { redo, basicUrl, setToRender, setCompareWhithQuery } =
+    useContext(ProvideData);
+  const { setDetailDataOpen, query, setQuery, CustinputArr, OrderinputArr } =
+    useContext(Thecontex);
+  const [open, setOpen] = useState(false);
+  const checkDataDetail = () => {
+    setDetailDataOpen(item._id);
+  };
+  const openEdit = () => {
+    setOpen(true);
+  };
   if (isOrder) {
     return (
       <tr>
-        <td style={{ textAlign: "center" }}>
-          <button
-            onClick={() => {
-              editData(
-                item._id,
-                query,
-                isOrder,
-                axiosFun,
-                basicUrl,
-                redo,
-                setQuery
-              );
-            }}
-          >
-            修改
-          </button>
-        </td>
-        <td style={{ textAlign: "center" }}>
-          <button
-            onClick={() => {
-              deleteInf(
-                data,
-                `${basicUrl}/OrdDelete/${item._id}`,
-                {
-                  id: item._id,
-                },
-                axiosFun,
-                redo
-              );
-            }}
-          >
-            刪除
-          </button>
-        </td>
-
+        <CreateAndEddit
+          setOpen={setOpen}
+          open={open}
+          theInputLabel={OrderinputArr}
+          setQuery={setQuery}
+          query={query}
+          isOrder={isOrder}
+          basicUrl={basicUrl}
+          type="修改"
+          id={item._id}
+          setToRender={setToRender}
+          setCompareWhithQuery={setCompareWhithQuery}
+          singleData={item}
+        />
         <td className="infTd" data-cell="OrderID">
           {item.OrderID}
         </td>
@@ -63,35 +51,9 @@ const CustomerOrderArray = ({ data, item, isOrder }) => {
         <td className="infTd" data-cell="OrderDate">
           {item.OrderDate.split("T")[0]}
         </td>
-      </tr>
-    );
-  } else {
-    return (
-      <tr>
         <td style={{ textAlign: "center" }}>
-          <button
-            onClick={() => {
-              checkDataDetail(item._id);
-            }}
-          >
-            查看
-          </button>
-        </td>
-        <td style={{ textAlign: "center" }}>
-          <button
-            onClick={() => {
-              editData(
-                item._id,
-                query,
-                isOrder,
-                axiosFun,
-                basicUrl,
-                redo,
-                setQuery
-              );
-            }}
-          >
-            修改
+          <button onClick={openEdit}>
+            <i className="fa-regular fa-pen-to-square"></i>
           </button>
         </td>
         <td style={{ textAlign: "center" }}>
@@ -99,7 +61,7 @@ const CustomerOrderArray = ({ data, item, isOrder }) => {
             onClick={() => {
               deleteInf(
                 data,
-                `${basicUrl}/CustDelete/${item._id}`,
+                `${basicUrl}/OrdDelete/${item._id}`,
                 {
                   id: item._id,
                 },
@@ -108,9 +70,29 @@ const CustomerOrderArray = ({ data, item, isOrder }) => {
               );
             }}
           >
-            刪除
+            <i className="fa-solid fa-trash"></i>
           </button>
         </td>
+      </tr>
+    );
+  } else {
+    return (
+      <tr>
+        <CreateAndEddit
+          setOpen={setOpen}
+          open={open}
+          theInputLabel={CustinputArr}
+          setQuery={setQuery}
+          query={query}
+          isOrder={isOrder}
+          basicUrl={basicUrl}
+          redo={redo}
+          type="修改"
+          id={item._id}
+          setCompareWhithQuery={setCompareWhithQuery}
+          setToRender={setToRender}
+          singleData={item}
+        />
         <td className="infTd" data-cell="CustID">
           {item.CustID}
         </td>
@@ -137,6 +119,37 @@ const CustomerOrderArray = ({ data, item, isOrder }) => {
         </td>
         <td className="infTd" data-cell="threeYearAmount">
           {item.threeYearAmount ? item.threeYearAmount : "近三年無訂單"}
+        </td>
+        <td style={{ textAlign: "center" }}>
+          <button onClick={checkDataDetail}>
+            <i className="fa-solid fa-eye"></i>
+          </button>
+        </td>
+        <td style={{ textAlign: "center" }}>
+          <button onClick={openEdit}>
+            <i className="fa-regular fa-pen-to-square"></i>
+          </button>
+        </td>
+        <td style={{ textAlign: "center" }}>
+          <button
+            onClick={() => {
+              deleteInf(
+                data,
+                `${basicUrl}/CustDelete/${item._id}`,
+                {
+                  id: item._id,
+                },
+                axiosFun,
+                redoAfterCreatEddit,
+                setToRender,
+                setCompareWhithQuery,
+                basicUrl,
+                isOrder
+              );
+            }}
+          >
+            <i className="fa-solid fa-trash"></i>
+          </button>
         </td>
       </tr>
     );

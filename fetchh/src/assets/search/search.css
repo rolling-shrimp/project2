@@ -3,36 +3,63 @@
   width: 7rem;
 }
 
-header {
+.header {
   width: 100%;
-  padding: 1rem;
-  position: relative;
-  height: 10vh;
+  padding: 0.5rem;
+  height: 15vh;
 }
-header .inputsss {
-  width: -moz-fit-content;
-  width: fit-content;
+.header .title {
+  height: 100%;
 }
-header .inputsss input {
-  width: 6rem;
+
+.inputArea {
+  height: 15vh;
+  background-color: rgb(181, 181, 181);
+}
+.inputArea .inputsss {
+  width: 15rem;
   font-size: 1rem;
-  border-radius: 1rem;
   text-align: left;
   padding: 5px;
   border: unset !important;
+  margin-right: 1rem;
+}
+.inputArea .inputAreabutton {
+  font-size: 1rem !important;
+  padding: 0.25rem 1rem !important;
+  margin-right: 1rem;
+}
+.inputArea .dateInput {
+  font-size: 1rem;
   margin-right: 0.5rem;
 }
-header .inputsss button {
-  margin-right: 0.25rem;
+.inputArea .clearDateBtn {
+  border: unset !important;
+  padding: 0.25rem 1rem !important;
+  margin-left: 0.5rem;
+  width: 4rem;
+  font-size: 1rem !important;
 }
-header .inputsss .showBtn {
-  display: none;
+
+.addBtn {
+  font-size: 1rem !important;
+  padding: 0.25rem 1rem !important;
 }
-header .showBtn {
-  display: none;
+
+.formElement {
+  color: #050d53 !important;
+  font-weight: 600 !important;
 }
-header .toggleInput {
-  display: none;
+.formElement::-moz-placeholder {
+  opacity: 0.3 !important;
+}
+.formElement::placeholder {
+  opacity: 0.3 !important;
+}
+
+.editAndCreateBtn {
+  padding: 0.5rem, 1rem !important;
+  width: 6rem;
 }
 
 /*!
@@ -12001,67 +12028,83 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-@media screen and (max-width: 1310px) {
-  header {
-    height: -moz-fit-content;
-    height: fit-content;
+@media screen and (max-width: 1135px) {
+  .inputArea .inputsss {
+    width: 10rem;
+    font-size: 0.8rem;
   }
-  header .inputsss {
-    width: 100%;
-    display: grid !important;
-    justify-self: center;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 1rem;
+  .inputArea .inputAreabutton {
+    font-size: 0.8rem !important;
+    padding: 0.25rem 1rem !important;
   }
-  header .inputsss input,
-  header .inputsss button {
-    width: 4rem;
-    font-size: 12px;
+  .inputArea .dateInput {
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
   }
 }
-@media screen and (max-width: 534px) {
-  header {
+@media screen and (max-width: 900px) {
+  .addBtn {
+    font-size: 0.8rem !important;
+  }
+  .h3 {
+    font-size: 1.5rem !important;
+  }
+}
+@media screen and (max-width: 800px) {
+  .addBtn {
+    font-size: 0.7rem !important;
+  }
+  .h3 {
+    font-size: 1.3rem !important;
+  }
+}
+@media screen and (max-width: 885px) {
+  .inputArea .inputsss {
+    width: 8rem;
+    font-size: 0.8rem;
+  }
+  .inputArea .inputAreabutton {
+    font-size: 0.8rem !important;
+    padding: 0.25rem 1rem !important;
+  }
+}
+@media screen and (max-width: 770px) {
+  .header {
+    height: 12vh;
+    border-bottom: #050d53 1px solid;
+  }
+  .addBtn {
+    font-size: 0.8rem !important;
+  }
+  .h3 {
+    font-size: 1.5rem !important;
+  }
+  .inputArea {
+    height: 16vh;
+  }
+  .inputArea .colCoverInput {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 8vh;
+  }
+  .inputArea .inputsss {
+    width: 10rem;
+  }
+}
+@media screen and (max-width: 770px) {
+  .headerSticky {
     position: sticky;
     top: 0;
-    background-color: rgb(5, 13, 83);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
   }
-  header .buttonArea {
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-bottom: 1rem;
-    width: 100%;
-  }
-  header div.inputsss {
-    display: none !important;
-  }
-  header .showBtn {
-    display: block;
-    font-size: 12px;
-    padding: 0.25rem 0.5rem;
-    height: 1.5rem;
-  }
-  header .showToggleInput {
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-  }
-  header .showToggleInput input,
-  header .showToggleInput button {
-    width: 100%;
-    font-size: 20px;
-    border-radius: unset !important;
-    text-align: center;
+  .inputAreaSticky {
+    position: sticky;
+    top: 25vh;
+    background-color: rgb(181, 181, 181);
   }
 }
-@media screen and (max-width: 360px) {
-  header .showBtn {
-    font-size: 8px;
+@media screen and (max-width: 450px) {
+  .inputArea {
+    height: 16vh;
   }
 }/*# sourceMappingURL=search.css.map */

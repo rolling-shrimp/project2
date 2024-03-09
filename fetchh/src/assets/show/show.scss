@@ -1,12 +1,18 @@
 table {
-  width: 95%;
-  border-radius: 1rem;
+  width: 100%;
+  background-color: white;
   padding: 0.5rem;
   min-height: 40vh;
   overflow-y: scroll;
-  background-color: rgb(5, 13, 83);
-  color: gray;
 
+  color: gray;
+  tr {
+    border-bottom: gray 1px solid;
+  }
+  thead {
+    background-color: rgb(5, 13, 83);
+    color: white;
+  }
   th,
   td {
     text-align: center;
@@ -16,6 +22,9 @@ table {
   tbody {
     padding: 0.5rem;
   }
+}
+.pageSpan {
+  height: 10vh;
 }
 @media screen and (max-width: 1218px) {
   table {
@@ -42,59 +51,42 @@ table {
     margin-bottom: 1rem;
   }
 }
-@media screen and (max-width: 615px) {
+@media screen and (max-width: 770px) {
   table {
-    background-color: rgb(134, 185, 205);
+    background-color: rgb(181, 181, 181);
     thead {
       display: none;
     }
     tbody {
       display: grid;
-      // flex-direction: column;
+      flex-direction: column;
       justify-self: center;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr;
       grid-template-rows: auto;
       gap: 0.5rem;
+
       tr {
         border: white 2px solid;
         margin-bottom: 1rem;
-        background-color: rgb(197, 193, 193);
+        color: white;
+        padding: 1rem;
+        background-color: rgb(5, 13, 83);
         td {
-          // background-color: rgb(134, 185, 205);
-          background-color: rgb(197, 193, 193);
           display: block;
-          font-size: 12px;
+          font-size: 16px;
           text-align: left;
+
           button {
             width: 100%;
+            &:hover {
+              background-color: gray;
+            }
           }
         }
         .infTd {
           &::before {
             content: attr(data-cell) ": ";
           }
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 430px) {
-  table {
-    tbody {
-      tr {
-        td {
-          font-size: 8px;
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 360px) {
-  table {
-    tbody {
-      tr {
-        td {
-          font-size: 6px;
         }
       }
     }

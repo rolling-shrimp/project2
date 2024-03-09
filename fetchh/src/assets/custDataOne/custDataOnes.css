@@ -1,7 +1,6 @@
 .custDataOneSection {
   height: -moz-fit-content;
   height: fit-content;
-  width: 80%;
 }
 .custDataOneSection .top {
   height: -moz-fit-content;
@@ -26,13 +25,6 @@
   justify-content: center;
   align-items: center;
 }
-.custDataOneSection .top .right .insideCustOrd {
-  border: gray 2px solid p;
-  font-size: 12px;
-  height: -moz-fit-content;
-  height: fit-content;
-  color: black;
-}
 .custDataOneSection .top .left {
   width: 30%;
   height: -moz-fit-content;
@@ -40,6 +32,16 @@
 }
 .custDataOneSection .top .left .list-group-item {
   max-width: 100%;
+}
+
+.insideCustOrd {
+  color: black;
+  overflow-y: auto;
+  font-size: 1rem !important;
+}
+
+.modal-dialog {
+  overflow-y: auto;
 }
 
 @media screen and (max-width: 1280px) {

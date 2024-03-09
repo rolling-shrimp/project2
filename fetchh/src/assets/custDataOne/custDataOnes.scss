@@ -1,6 +1,5 @@
 .custDataOneSection {
   height: fit-content;
-  width: 80%;
 
   .top {
     height: fit-content;
@@ -21,14 +20,6 @@
         justify-content: center;
         align-items: center;
       }
-      .insideCustOrd {
-        border: gray 2px solid p {
-
-        }
-        font-size: 12px;
-        height: fit-content;
-        color: black;
-      }
     }
     .left {
       width: 30%;
@@ -39,7 +30,14 @@
     }
   }
 }
-
+.insideCustOrd {
+  color: black;
+  overflow-y: auto;
+  font-size: 1rem !important;
+}
+.modal-dialog {
+  overflow-y: auto;
+}
 @media screen and (max-width: 1280px) {
   .custDataOneSection {
     .top {

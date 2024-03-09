@@ -1,48 +1,26 @@
 .interface {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-
-  min-height: 70vh;
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
+  background-color: rgb(181, 181, 181);
+  min-height: 100vh;
 }
+
 @media screen and (max-width: 1310px) {
   .interface {
     justify-content: flex-start;
-    span {
-      font-size: 12px;
-    }
   }
 }
 @media screen and (max-width: 800px) {
   .interface {
     min-height: 40vh;
-    span {
-      font-size: 8px;
-    }
   }
 }
-@media screen and (max-width: 615px) {
+@media screen and (max-width: 770px) {
   .interface {
-    span {
-      font-size: 12px;
-    }
+    position: relative;
   }
 }
 
 @media screen and (max-width: 540px) {
   .interface {
     min-height: 68vh;
-  }
-}
-@media screen and (max-width: 400px) {
-  .interface {
-    position: relative;
   }
 }

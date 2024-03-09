@@ -1,10 +1,10 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext } from "react";
+import { Container, Spinner, Row, Col } from "react-bootstrap";
+import AxiosFun from "../AxiosFun/axiosFun";
 import Search from "../components/Search";
 import Show from "../components/Show";
 import useFetchData from "../components/useFetchData";
-import axiosFun from "../AxiosFun/axiosFun";
 import "../assets/interface/interface.css";
-import { Thecontex } from "../App";
 
 export const ProvideData = createContext();
 const Interface = ({ isOrder, changePage }) => {
@@ -15,14 +15,17 @@ const Interface = ({ isOrder, changePage }) => {
     "https://crud-project-yh8x.onrender.com"
   );
   const [eachPageAmount /* ignored */] = useState(5);
-  const { Loading } = useContext(Thecontex);
-  const redo = async () => {
+  const redo = async (disableRedo, clearDate, date) => {
+    disableRedo(true);
+    let [startDate, endDate] = Object.keys(date);
+
+    clearDate({ ...date, [startDate]: "", [endDate]: "" });
     let url;
     isOrder
       ? (url = `${basicUrl}/OrdDataAll`)
       : (url = `${basicUrl}/CustDataAll`);
     try {
-      let response = await axiosFun.getOnly(url);
+      let response = await AxiosFun.getOnly(url);
 
       setToRender(response.data);
       setCompareWhithQuery(response.data);
@@ -32,19 +35,44 @@ const Interface = ({ isOrder, changePage }) => {
   };
 
   return (
-    <div className="interface">
-      <Search
-        basicUrl={basicUrl}
-        setToRender={setToRender}
-        isOrder={isOrder}
-        toRender={toRender}
-        redo={redo}
-        changePage={changePage}
-        setCompareWhithQuery={setCompareWhithQuery}
-        compareWhithQuery={compareWhithQuery}
-      />
+    <Container fluid className="interface">
+      <ProvideData.Provider
+        value={{
+          basicUrl,
+          setToRender,
+          setCompareWhithQuery,
+          isOrder,
+          compareWhithQuery,
+        }}
+      >
+        <Search
+          basicUrl={basicUrl}
+          setToRender={setToRender}
+          isOrder={isOrder}
+          toRender={toRender}
+          redo={redo}
+          changePage={changePage}
+          setCompareWhithQuery={setCompareWhithQuery}
+          compareWhithQuery={compareWhithQuery}
+        />
+      </ProvideData.Provider>
       {!toRender ? (
-        <Loading />
+        <Row>
+          <Col md={4}></Col>
+          <Col
+            className="d-flex flex-column align-items-center justify-content-center h-50"
+            md={4}
+          >
+            <h3>
+              {" "}
+              後端api是架設在免費的server上，會有server休眠時間，大概一分鐘，請耐心等候
+            </h3>
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </Col>
+          <Col md={4}></Col>
+        </Row>
       ) : (
         <ProvideData.Provider
           value={{
@@ -52,6 +80,8 @@ const Interface = ({ isOrder, changePage }) => {
             redo,
             isOrder,
             data: toRender,
+            setToRender,
+            setCompareWhithQuery,
           }}
         >
           <Show
@@ -63,7 +93,7 @@ const Interface = ({ isOrder, changePage }) => {
           />
         </ProvideData.Provider>
       )}
-    </div>
+    </Container>
   );
 };
 

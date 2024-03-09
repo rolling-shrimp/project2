@@ -1,64 +1,90 @@
+import Swal from "sweetalert2";
 //the search function
 export const submitSearch = (
   compareWithQuery,
   query,
   setCompareWhithQuery,
-  setQuery
+  setQuery,
+  setRedoDisable
 ) => {
-  let searchQuery = Object.entries(query).filter(
-    ([key, value]) => value !== ""
-  );
-  console.log(searchQuery);
+  if (query === "") {
+    Swal.fire({ title: "請確實輸入搜尋條件", confirmButtonColor: "#050d53 " });
+    return;
+  }
+
   let searChedArray = compareWithQuery.filter((item) => {
-    for (const [key, value] of searchQuery) {
-      if (value !== item[key]) {
-        return false;
+    for (let property in item) {
+      if (item[property] == query) {
+        return true;
       }
     }
-    return true;
+
+    return false;
   });
 
   if (searChedArray.length === 0) {
-    alert("查無資料");
+    Swal.fire({ title: "查無資料", confirmButtonColor: "#050d53 " });
   } else {
+    setRedoDisable(false);
     setCompareWhithQuery(searChedArray);
+    setQuery("");
   }
-  setQuery({});
 };
 
 //the insert data to database function
-export const createNewData = async (
+export const createNewData = (
   isOrder,
   query,
   basicUrl,
   redo,
-  setQuery,
-  axiosFun
+  axiosFun,
+  setToRender,
+  setCompareWhithQuery,
+  reset
 ) => {
-  if (window.confirm("確定要新增嗎")) {
-    let dataToCreate;
-    let type;
+  Swal.fire({
+    title: "確定要新增嗎",
+    showCancelButton: true,
+    confirmButtonText: "確定",
+    cancelButtonText: "取消",
+    confirmButtonColor: "#050d53 ",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let dataToCreate;
+      let type;
 
-    isOrder ? (type = "order") : (type = "customer");
-    switch (type) {
-      case "customer":
-        dataToCreate = { ...query, type };
-        break;
-      case "order":
-        dataToCreate = { ...query, type };
-        break;
-      default:
-        return;
+      isOrder ? (type = "order") : (type = "customer");
+      switch (type) {
+        case "customer":
+          dataToCreate = { ...query, type };
+          break;
+        case "order":
+          dataToCreate = { ...query, type };
+          break;
+        default:
+          return;
+      }
+
+      axiosFun
+        .post(`${basicUrl}/submit`, dataToCreate)
+        .then(() => {
+          Swal.fire({
+            title: "新增成功",
+            confirmButtonColor: "#050d53 ",
+            icon: "success",
+          });
+          reset();
+          redo(axiosFun, basicUrl, isOrder, setToRender, setCompareWhithQuery);
+        })
+        .catch((e) => {
+          Swal.fire({
+            title: "新增失敗",
+            confirmButtonColor: "#050d53 ",
+            icon: "error",
+          });
+        });
     }
-    try {
-      await axiosFun.post(`${basicUrl}/submit`, dataToCreate);
-      alert("新增成功");
-      redo();
-      setQuery({});
-    } catch (e) {
-      alert(`新增失敗，錯誤訊息: ${e.response.data} `);
-    }
-  }
+  });
 };
 
 //the update data in database function
@@ -69,52 +95,133 @@ export const editData = async (
   axiosFun,
   basicUrl,
   redo,
-  setQuery
+  setToRender,
+  setCompareWhithQuery,
+  reset
 ) => {
-  if (window.confirm("確定要修改嗎?")) {
-    if (Object.keys(sthToUpdate).length === 0) {
-      alert("請至少填寫一個欄位");
-      return;
-    }
+  if (Object.keys(sthToUpdate).length === 0) {
+    Swal.fire({ title: "請至少填寫一個欄位", confirmButtonColor: "#050d53 " });
 
-    try {
+    return;
+  }
+
+  Swal.fire({
+    title: "確定要修改嗎",
+    showCancelButton: true,
+    confirmButtonText: "確定",
+    cancelButtonText: "取消",
+    confirmButtonColor: "#050d53 ",
+  }).then((result) => {
+    if (result.isConfirmed) {
       let searchQuery = Object.entries(sthToUpdate).filter(
         ([key, value]) => value !== ""
       );
       let toUpdate = Object.fromEntries(searchQuery);
-      if (Object.keys(toUpdate).length === 0) {
-        alert("請至少填寫一個欄位");
-        return;
-      }
-
+      // if (Object.keys(toUpdate).length === 0) {
+      //   Swal.fire("請至少填寫一個欄位");
+      //   return;
+      // }
       isOrder
-        ? await axiosFun.put(`${basicUrl}/OrdEdit/${id}`, toUpdate)
-        : await axiosFun.put(`${basicUrl}/CustEdit/${id}`, toUpdate);
-
-      alert("修改成功");
-      setQuery({});
-      redo();
-    } catch (e) {
-      alert(`修改失敗，錯誤訊息: ${e.response.data} `);
+        ? axiosFun
+            .put(`${basicUrl}/OrdEdit/${id}`, toUpdate)
+            .then(() => {
+              Swal.fire({
+                title: "修改成功",
+                icon: "success",
+                confirmButtonColor: "#050d53 ",
+              });
+              reset();
+              redo(
+                axiosFun,
+                basicUrl,
+                isOrder,
+                setToRender,
+                setCompareWhithQuery
+              );
+            })
+            .catch((e) => {
+              Swal.fire({
+                title: "修改失敗",
+                icon: "error",
+                confirmButtonColor: "#050d53 ",
+              });
+            })
+        : axiosFun
+            .put(`${basicUrl}/CustEdit/${id}`, toUpdate)
+            .then(() => {
+              Swal.fire({
+                title: "修改成功",
+                icon: "success",
+                confirmButtonColor: "#050d53 ",
+              });
+              reset();
+              redo(
+                axiosFun,
+                basicUrl,
+                isOrder,
+                setToRender,
+                setCompareWhithQuery
+              );
+            })
+            .catch((e) => {
+              Swal.fire({
+                title: "修改失敗",
+                icon: "error",
+                confirmButtonColor: "#050d53 ",
+              });
+            });
     }
-  }
+  });
 };
 
 //the delete data in database function
-export const deleteInf = async (data, url, obj, axiosFun, redo) => {
+export const deleteInf = (
+  data,
+  url,
+  obj,
+  axiosFun,
+  redo,
+  setToRender,
+  setCompareWhithQuery,
+  basicUrl,
+  isOrder
+) => {
   if (data.length === 3) {
-    alert("不能再刪除了");
+    Swal.fire({
+      title: "不能再刪除了",
+      confirmButtonColor: "#050d53 ",
+      icon: "error",
+    });
     return;
   }
-  if (window.confirm("確定要刪除嗎?")) {
-    try {
-      await axiosFun.delete(url, obj);
-      alert("刪除成功");
-      redo();
-    } catch (e) {
-      alert("刪除失敗");
+  Swal.fire({
+    title: "確定要刪除嗎?",
+    text: "按下刪除該資料將永遠消失",
+    showCancelButton: true,
+    confirmButtonColor: "#050d53 ",
+    confirmButtonText: "確定",
+    cancelButtonText: "取消",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axiosFun
+        .delete(url, obj)
+        .then(() => {
+          Swal.fire({
+            title: "刪除成功",
+            icon: "success",
+            confirmButtonColor: "#050d53 ",
+          });
+          redo(axiosFun, basicUrl, isOrder, setToRender, setCompareWhithQuery);
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "刪除失敗",
+            confirmButtonColor: "#050d53 ",
+            icon: "error",
+          });
+        });
     }
-  }
+  });
 };
 
 //the Initial or redo eventHandler
@@ -122,6 +229,26 @@ export const redo = async (
   axiosFun,
   isOrder,
   basicUrl,
+  setToRender,
+  setCompareWhithQuery
+) => {
+  let url;
+  isOrder
+    ? (url = `${basicUrl}/OrdDataAll`)
+    : (url = `${basicUrl}/CustDataAll`);
+  try {
+    let response = await axiosFun.getOnly(url);
+
+    setToRender(response.data);
+    setCompareWhithQuery(response.data);
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const redoAfterCreatEddit = async (
+  axiosFun,
+  basicUrl,
+  isOrder,
   setToRender,
   setCompareWhithQuery
 ) => {

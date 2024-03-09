@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { Row, Col, Table } from "react-bootstrap";
 import { Thecontex } from "../App";
 import "../assets/show/show.css";
 
@@ -42,61 +43,96 @@ const Show = ({ isOrder, data, eachPageAmount }) => {
 
   return (
     <>
-      {isOrder ? (
-        <table>
-          <thead>
-            <tr>
-              <th colSpan="2">{""}</th>
-
-              {theVal.OrderinputArr.map((item) => (
-                <th>{item}</th>
-              ))}
-              <th colSpan="4">Date</th>
-            </tr>
-          </thead>
-          {data.length !== 0 ? (
-            <ArraySegment
-              key={page}
-              eachPageAmount={eachPageAmount}
-              page={page}
-              isOrder={isOrder}
-            />
+      <Row>
+        <Col md={1}></Col>
+        <Col className="d-flex flex-row justifiy-content-center align-items-center">
+          {isOrder ? (
+            <table>
+              <thead>
+                <tr>
+                  {theVal.OrderinputArr.map((item) => (
+                    <th key={item}>{item}</th>
+                  ))}
+                  <th>Date</th>
+                  <th colSpan="2">{""}</th>
+                </tr>
+              </thead>
+              {data.length !== 0 ? (
+                <ArraySegment
+                  key={page}
+                  eachPageAmount={eachPageAmount}
+                  page={page}
+                  isOrder={isOrder}
+                />
+              ) : (
+                <tbody
+                  className="w-100 h-100"
+                  style={{
+                    backgroundColor: "rgb(5,13,83)",
+                    borderTop: "white solid 1px ",
+                    color: "white",
+                  }}
+                >
+                  <tr>
+                    <td colSpan={7}>無資料</td>
+                  </tr>
+                </tbody>
+              )}
+            </table>
           ) : (
-            <h1>no data now please add</h1>
+            <table>
+              <thead>
+                <tr>
+                  {theVal.CustinputArr.map((item) => (
+                    <th key={item}>{item}</th>
+                  ))}
+
+                  <th>近三年的訂單消費總和</th>
+                  <th colSpan="3">{""}</th>
+                </tr>
+              </thead>
+              {data.length !== 0 ? (
+                <ArraySegment
+                  key={page}
+                  eachPageAmount={eachPageAmount}
+                  page={page}
+                  isOrder={isOrder}
+                />
+              ) : (
+                <tbody
+                  className="w-100 h-100"
+                  style={{
+                    backgroundColor: "rgb(5,13,83)",
+                    borderTop: "white solid 1px ",
+                    color: "white",
+                  }}
+                >
+                  <tr>
+                    <td colSpan={7}>無資料</td>
+                  </tr>
+                </tbody>
+              )}
+            </table>
           )}
-        </table>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th colSpan="3">{""}</th>
-              {theVal.CustinputArr.map((item) => (
-                <th>{item}</th>
-              ))}
+        </Col>
+        <Col md={1}></Col>
+      </Row>
+      <Row>
+        <Col className="pageSpan d-flex flex-row align-items-center justify-content-center">
+          <span>
+            <button onClick={lastPage}>
+              {" "}
+              <i className="fa-solid fa-chevron-left"></i>
+            </button>
 
-              <th>近三年的訂單消費總和</th>
-            </tr>
-          </thead>
-          {data.length !== 0 ? (
-            <ArraySegment
-              key={page}
-              eachPageAmount={eachPageAmount}
-              page={page}
-              isOrder={isOrder}
-            />
-          ) : (
-            <h1>no data now please add</h1>
-          )}
-        </table>
-      )}
+            <span>{page}</span>
 
-      <span>
-        <button onClick={lastPage}>上一頁</button>
-
-        <span>{page}</span>
-
-        <button onClick={nextPage}>下一頁</button>
-      </span>
+            <button onClick={nextPage}>
+              <i className="fa-solid fa-chevron-right"></i>
+            </button>
+          </span>
+        </Col>
+      </Row>
     </>
   );
 };
