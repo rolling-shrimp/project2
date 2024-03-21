@@ -79,6 +79,7 @@ export const createNewData = (
           redo(axiosFun, basicUrl, isOrder, setToRender, setCompareWhithQuery);
         })
         .catch((e) => {
+          console.log(e);
           Swal.fire({
             title: "新增失敗",
             confirmButtonColor: "#050d53 ",
