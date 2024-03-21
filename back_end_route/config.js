@@ -125,6 +125,7 @@ app.post("/submit", async (req, res) => {
         req.body;
 
       let sameID = await Customer.findOne({ CustID: CustID });
+      console.log(sameID);
       if (sameID === CustID) {
         return res.status(400).send("已經有相同的CustID，請更換別的");
       }
@@ -153,6 +154,7 @@ app.post("/submit", async (req, res) => {
     const { OrderID, CustID, TotalAmount, OrdStatus, SalesName, OrderDate } =
       req.body;
     let sameID = await Order.findOne({ OrderID: OrderID });
+
     if (sameID === OrderID) {
       return res.status(400).send("已經有相同的OrderID，請更換別的");
     }
