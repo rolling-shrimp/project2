@@ -82,6 +82,7 @@ export const createNewData = (
           console.log(e);
           Swal.fire({
             title: "新增失敗",
+            text: `${e.response.data}`,
             confirmButtonColor: "#050d53 ",
             icon: "error",
           });
