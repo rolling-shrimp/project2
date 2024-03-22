@@ -121,10 +121,7 @@ export const editData = async (
         ([key, value]) => value !== ""
       );
       let toUpdate = Object.fromEntries(searchQuery);
-      // if (Object.keys(toUpdate).length === 0) {
-      //   Swal.fire("請至少填寫一個欄位");
-      //   return;
-      // }
+
       isOrder
         ? axiosFun
             .put(`${basicUrl}/OrdEdit/${id}`, toUpdate)
@@ -146,6 +143,7 @@ export const editData = async (
             .catch((e) => {
               Swal.fire({
                 title: "修改失敗",
+                text: `${e.response.data}`,
                 icon: "error",
                 confirmButtonColor: "#050d53 ",
               });
@@ -170,6 +168,7 @@ export const editData = async (
             .catch((e) => {
               Swal.fire({
                 title: "修改失敗",
+
                 icon: "error",
                 confirmButtonColor: "#050d53 ",
               });
