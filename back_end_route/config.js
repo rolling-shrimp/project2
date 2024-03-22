@@ -184,6 +184,12 @@ app.put("/CustEdit/:id", async function (req, res) {
   try {
     let toUpdate = req.body;
     let { id } = req.params;
+    if (toUpdate.CustID) {
+      let theSame = await Customer.findOne({ CustID: toUpdate.CustID });
+      if (theSame) {
+        return res.status(400).send("已經有相同的CustID，請使用別的");
+      }
+    }
     let updateConsequence = await Customer.updateOne({ _id: id }, toUpdate);
     res.status(200).json(updateConsequence);
   } catch (e) {
@@ -199,6 +205,12 @@ app.put("/OrdEdit/:id", async function (req, res) {
   try {
     let toUpdate = req.body;
     let { id } = req.params;
+    if (toUpdate.OrderID) {
+      let theSame = await Order.findOne({ OrderID: toUpdate.OrderID });
+      if (theSame) {
+        return res.status(400).send("已經有相同的OrderID，請使用別的");
+      }
+    }
     let updateConsequence = await Order.updateOne({ _id: id }, toUpdate);
     res.status(200).json(updateConsequence);
   } catch (e) {
