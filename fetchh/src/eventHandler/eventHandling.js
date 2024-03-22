@@ -168,7 +168,7 @@ export const editData = async (
             .catch((e) => {
               Swal.fire({
                 title: "修改失敗",
-
+                text: `${e.response.data}`,
                 icon: "error",
                 confirmButtonColor: "#050d53 ",
               });
